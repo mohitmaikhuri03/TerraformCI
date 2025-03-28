@@ -1,6 +1,6 @@
 package ci.terraform.terraformCI
 
-def checkovScan(String terraformDir) {
+def terraformcheckov(String terraformDir) {
     dir(terraformDir) {
         sh '''
             pip install -q --upgrade checkov
