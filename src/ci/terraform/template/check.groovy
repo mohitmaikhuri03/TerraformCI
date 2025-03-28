@@ -1,21 +1,21 @@
-package CI.Terraform.Template
+package ci.terraform.template
 
-import CI.Terraform.Common.*
-import CI.Terraform.TerraformCI.*
+import ci.terraform.common.*
+import ci.terraform.terraformCI.*
 
 def runpipeline(String terraformDir, String branch, String repoUrl, String credentialsId = null)
 {
    Clean = new wsclean()
    Clone = new gitclone()
-   init = new TerraformInit()
-   fmt = new Terraformfmt()
-   validate = new TerraformValidate()
+   Init = new init()
+   Fmt = new fmt()
+   Validate = new validate()
 
   Clean.clean()
   Clone.clone(branch, repoUrl, credentialsId)
-  init.terraformInit(terraformDir)
-  fmt.terraformFormat(terraformDir)
-  validate.terraformValidate(terraformDir)
+  Init.terraformInit(terraformDir)
+  Fmt.terraformFormat(terraformDir)
+  Validate.terraformValidate(terraformDir)
   
 }
   
