@@ -1,4 +1,4 @@
-package CI.Terraform.Tmeplate
+package CI.Terraform.Template
 
 import CI.Terraform.Common.*
 import CI.Terraform.TerraformCI.*
