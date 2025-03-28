@@ -1,4 +1,4 @@
-package CI.Terraform.TerraformCI
+package ci.terraform.terraformCI
 
 def terraformValidate(String terraformDir) {
     dir(terraformDir) {
