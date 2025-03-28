@@ -1,4 +1,4 @@
-package CI.Terraform.TerraformCI
+package ci.terraform.terraformCI
 
 def terraformInit(String terraformDir) {
     dir(terraformDir) {
