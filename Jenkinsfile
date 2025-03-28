@@ -1,6 +1,6 @@
 @Library('mera@main') _
 
-def CICheck = new CI.Terraform.Template.check()
+def CICheck = new ci.terraform.template.check()
 
 pipeline {
     agent any
