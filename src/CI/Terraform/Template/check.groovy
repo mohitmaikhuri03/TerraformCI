@@ -9,8 +9,8 @@ def runpipeline(String terraformDir, String branch, String repoUrl, String crede
   Clean = new wsclean()
   Clone = new gitclone()
   init = new TerraformInit()
-  fmt = new TerraformFmt()
-  validate = new Terrafromvalidate()
+  fmt = new Terraformfmt()
+  validate = new TerrafromValidate()
 
   Clean.clean()
   Clone.clone(branch, repoUrl, credentialsId)
