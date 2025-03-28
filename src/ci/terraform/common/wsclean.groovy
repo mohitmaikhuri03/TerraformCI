@@ -1,4 +1,4 @@
-package CI.Terraform.Common
+package ci.terraform.common
 
 def clean() {
     cleanWs()
