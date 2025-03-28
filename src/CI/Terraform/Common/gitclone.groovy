@@ -1,5 +1,5 @@
 package CI.Terraform.Common
-def clone(String branch, String repourl, String credentialsId = null) {
+def clone(String branch, String repoUrl, String credentialsId = null) {
     if (credentialsId) {
         git branch: branch, url: url, credentialsId: credentialsId
     } else {
