@@ -11,6 +11,7 @@ def runpipeline(String terraformDir, String branch, String repoUrl, String crede
    Fmt = new fmt()
    Validate = new validate()
    Lint = new lint()
+   Checkov = new checkov()
 
   Clean.clean()
   Clone.clone(branch, repoUrl, credentialsId)
@@ -18,6 +19,7 @@ def runpipeline(String terraformDir, String branch, String repoUrl, String crede
   Fmt.terraformFormat(terraformDir)
   Validate.terraformValidate(terraformDir)
   Lint.tflintScan(terraformDir)
+  Checkov.terraformcheckov(terraformDir)
   
 }
   
