@@ -14,7 +14,9 @@
    - [Cost Estimation](#cost-estimation)
 4. [Project Structure](#project-structure)
 5. [Jenkins Pipeline Flow](#jenkins-pipeline-flow)
-6. [Mermaid.js Diagram](#mermaidjs-diagram)
+6. [GitHub and Shared Library Integration](#github-and-shared-library-integration)
+7. [Mermaid.js Diagram](#mermaidjs-diagram)
+8. [Visual Representation](#visual-representation)
 
 ## Introduction
 This document describes the Continuous Integration (CI) pipeline for Terraform using Jenkins and a shared library. The pipeline automates the validation, formatting, linting, and cost estimation of Terraform code before deployment.
@@ -25,6 +27,7 @@ Terraform CI ensures that infrastructure as code (IaC) changes are:
 - Validated for errors
 - Checked for best practices using linting
 - Estimated for cost implications before applying changes
+- Automated via a Jenkins pipeline using a shared library
 
 ## CI Pipeline Steps
 
@@ -52,7 +55,7 @@ Terraform CI ensures that infrastructure as code (IaC) changes are:
 - Ensures all dependencies are met and verifies resource configurations.
 
 ### Cost Estimation
-- Uses `terraform cost estimation` (e.g., infracost) to predict infrastructure costs before applying changes.
+- Uses `terraform cost estimation` (e.g., Infracost) to predict infrastructure costs before applying changes.
 
 ## Project Structure
 ```
@@ -77,6 +80,13 @@ terraform-ci-pipeline/
 - The `Jenkinsfile` calls a shared library to execute the Terraform CI steps.
 - Each step is implemented as a separate script in `terraform-ci/`.
 - The template file organizes the execution order.
+- The pipeline automatically runs the Terraform CI process on every push or pull request in GitHub.
+
+## GitHub and Shared Library Integration
+- The shared library contains reusable scripts for Terraform CI.
+- The Terraform module is stored in a separate repository or directory.
+- The pipeline template file sources the necessary scripts dynamically.
+- The Jenkinsfile imports the shared library and calls the Terraform CI steps.
 
 ## Mermaid.js Diagram
 ```mermaid
@@ -92,8 +102,20 @@ graph TD;
     Cost -->|End Process| End
 ```
 
-This diagram represents the flow of the Terraform CI pipeline from cleaning the workspace to cost estimation.
+## Visual Representation
+### GitHub & Jenkins Flow
+```mermaid
+graph TD;
+    Developer -->|Push Code| GitHub[GitHub Repo]
+    GitHub -->|Triggers Build| Jenkins[Jenkins Pipeline]
+    Jenkins -->|Calls Shared Library| SharedLib[Shared Library]
+    SharedLib -->|Runs Terraform Steps| TerraformCI[Terraform CI Scripts]
+    TerraformCI -->|Processes Infrastructure Code| TerraformModule[Terraform Module Repo]
+    TerraformModule -->|Finalizes Execution| End
+```
+
+This diagram represents the flow from a developer pushing code to GitHub, triggering a Jenkins pipeline, which then calls a shared library and runs Terraform CI steps before executing the Terraform module.
 
 ---
-This README provides a clear understanding of the Terraform CI pipeline and its implementation using Jenkins and shared libraries.
+This README provides a clear understanding of the Terraform CI pipeline, its integration with GitHub, Jenkins, and shared libraries, along with detailed diagrams for better visualization.
 
