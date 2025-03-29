@@ -11,7 +11,7 @@
 2. [Prerequisites](#prerequisites)  
 3. [Why Terraform Module CI?](#why-terraform-module-ci)  
 4. [Terraform CI Steps](#terraform-ci-steps)  
-5. [CI/CD Workflow](#cicd-workflow)  
+5. [CI Workflow](#ci-workflow)  
 6. [Contact Information](#contact-information)  
 7. [References](#references)  
 
@@ -47,36 +47,15 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 | **💰 Cost Estimation** | Calculates the cost impact of proposed infrastructure changes before applying them. |
 
 ---
-## CI  Workflow
+## CI Workflow
 
-```mermaid
-graph TD;
-    A[🔗 SCM - e.g., Git] --> B[🛠 Jenkins Server];
-    B --> C{🚀 Pipeline Job};
-    C --> D[📜 Jenkinsfile];
-    D --> E[📦 Shared Library];
-    E --> F{📁 src Directory};
-    F --> G{📁 ci Directory};
-    G --> H{📁 terraform Directory};
-    H --> J{📁 common};
-    H --> K{📁 template};
-    H --> L{📁 terraformCI};
-    J --> M[📜 gitclone.groovy];
-    J --> N[📜 wsclean.groovy];
-    K --> O[📜 template.groovy];
-    L --> P[🔒 checkov.groovy];
-    L --> Q[💰 cost.groovy];
-    L --> R[📝 fmt.groovy];
-    L --> S[⚙️ init.groovy];
-    L --> T[🔍 lint.groovy];
-    L --> U[✅ validate.groovy];
-```
+
 
 ## Workflow Explanation
 
 ### 🔗 **1. Source Code Management (SCM)**
 
-![SCM Image](https://github.com/user-attachments/assets/0685e9d1-66e2-4487-9c78-052544b86f51)
+![image](https://github.com/user-attachments/assets/32ebb930-98d9-483d-a19b-a3df7c9509da)
 
 ### 🚀 **2. Pipeline Job Execution**
 
@@ -86,8 +65,11 @@ graph TD;
 3. Add a new library.
 4. Click Save.
 
-![Library Image](https://github.com/user-attachments/assets/fd276d30-feec-4d28-b053-df20dca24f2a)
-![Library Image 2](https://github.com/user-attachments/assets/4a5518b8-f498-4255-b978-c456d3678d39)
+![image](https://github.com/user-attachments/assets/3e5c2110-ebf1-4f6b-a0e6-0aa438fa3ddb)
+
+![image](https://github.com/user-attachments/assets/64e65673-810c-4328-b806-f3633233b251)
+
+
 
 #### **Pipeline Execution from SCM**
 1. Navigate to Jenkins Dashboard → New Item.
@@ -97,6 +79,8 @@ graph TD;
 5. Set **Branch Specifier** to `*/main`.
 6. In the **Script Path**, enter `Jenkinsfile`.
 7. Click **Save** and then **Build Now**.
+
+   
 
 #### **Jenkinsfile Reference from Git**
 [Insert Jenkinsfile Link Here]
@@ -114,7 +98,7 @@ The shared library organizes reusable scripts into logical categories:
 - **template/**: Boilerplate scripts like `check.groovy`.
 - **terraformCI/**: Terraform-specific CI scripts like `checkov.groovy`, `fmt.groovy`, `validate.groovy`, etc.
 
-GitHub link for the shared library: [Insert GitHub Link Here]
+ **GitHub link for the shared library:** [Shared Library](https://github.com/snaatak-Zero-Downtime-Crew/shared-library/tree/Mohit-SCRUM-336/src/ci/terraform)
 
 ---
 ## ✅ Benefits of This Workflow
