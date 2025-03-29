@@ -36,6 +36,30 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 | **Cost Estimation** | Calculates the cost impact of proposed infrastructure changes before applying them. |
 
 ___
+
+graph LR
+    A[SCM (e.g., Git)] --> B(Jenkins Server)
+    B --> C{Pipeline Job}
+    C --> D[Jenkinsfile]
+    D --> E((@Library('your-shared-library-name') _))
+    E --> F[Shared Library]
+    F --> G{src Directory}
+    G --> H{ci Directory}
+    H --> I{terraform Directory}
+    I --> J{common}
+    I --> K{template}
+    I --> L{terraformCI}
+    J --> M[gitclone.groovy]
+    J --> N[wsclean.groovy]
+    K --> O[check.groovy]
+    L --> P[checkov.groovy]
+    L --> Q[cost.groovy]
+    L --> R[fmt.groovy]
+    L --> S[init.groovy]
+    L --> T[lint.groovy]
+    L --> U[validate.groovy]
+
+
 ## Contact Information
 
 | **Name** | **Email address** |
