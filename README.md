@@ -80,17 +80,37 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 6. In the **Script Path**, enter `Jenkinsfile`.
 7. Click **Save** and then **Build Now**.
 
-   
+![image](https://github.com/user-attachments/assets/e9596831-6bfd-4f7b-a82e-fa9e25770d91)
+
 
 #### **Jenkinsfile Reference from Git**
-[Insert Jenkinsfile Link Here]
 
-#### **Execution Output**
+![image](https://github.com/user-attachments/assets/075f93a5-10fe-4ac5-89ec-fb8e7f31ddad)
+
+
+#### **Execution Output:-**
+
+![image](https://github.com/user-attachments/assets/e8c6bcf5-8808-4ed6-bf44-ebb709ad2c96)
+
+![image](https://github.com/user-attachments/assets/760ce84f-567f-4fb8-9837-992ac2fcae70)
+
+
+
+
 
 ### 📊 **3. Report Generation**
-- **TFLint Report**: Below, you can find an image showing the TFLint report.
-- **Checkov Report**: Below, you can find an image showing the Checkov security report.
-- **Infrastructure Cost Report**: Below, you can find an image showing the Infra cost analysis report.
+- ### **TFLint Report**: Below, you can find an image showing the TFLint report.
+- 
+   [TfLint Report](https://github.com/mohitmaikhuri03/TerraformCI/blob/main/tflint%20report)
+
+
+- ### **Checkov Report**: Below, you can find the Link showing the Checkov security report.
+
+  [Checkov Report](https://github.com/mohitmaikhuri03/TerraformCI/blob/main/checkov%20report)
+
+- ### **Infrastructure Cost Report**: Below, you can find the Link showing the Infra cost analysis report.
+
+  [InfraCost Report](https://github.com/mohitmaikhuri03/TerraformCI/blob/main/Infracost%20Report)
 
 ### 📦 **4. Shared Library Structure**
 The shared library organizes reusable scripts into logical categories:
@@ -98,7 +118,7 @@ The shared library organizes reusable scripts into logical categories:
 - **template/**: Boilerplate scripts like `check.groovy`.
 - **terraformCI/**: Terraform-specific CI scripts like `checkov.groovy`, `fmt.groovy`, `validate.groovy`, etc.
 
- **GitHub link for the shared library:** [Shared Library](https://github.com/snaatak-Zero-Downtime-Crew/shared-library/tree/Mohit-SCRUM-336/src/ci/terraform)
+ **GitHub link for the shared library:** [Shared Library](https://github.com/mohitmaikhuri03/TerraformCI.git)
 
 ---
 ## ✅ Benefits of This Workflow
