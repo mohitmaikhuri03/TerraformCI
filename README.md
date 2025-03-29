@@ -1,95 +1,77 @@
-# Terraform CI Pipeline
+# **TERRAFORM MODULE CI POC**
+
+| **Author** | **Created on** | **Version** | **Last updated by** | **Last Edited On** | **Level** | **Reviewer** |
+|------------|--------------|-------------|----------------|---------------|-------------|-------------|
+| Mohit Kumar | -03-2025 | Version 1 | Mohit Kumar | -02-2025 | Internal Reviewer | |
 
 ## Table of Contents
 1. [Introduction](#introduction)  
-2. [Why Terraform CI?](#why-terraform-ci)  
-3. [Terraform CI Pipeline Steps](#terraform-ci-pipeline-steps)  
-   - [Clean](#clean-details)  
-   - [Clone](#clone-details)  
-   - [Init](#init-details)  
-   - [Fmt](#fmt-details)  
-   - [Validate](#validate-details)  
-   - [Lint](#lint-details)  
-   - [Check](#check-details)  
-   - [Cost Estimation](#cost-estimation-details)  
-4. [Project Structure](#project-structure)  
+2. [Why Terraform Module CI?](#why-terraform-module-ci)  
 
----
+   <details>
+   <summary>Terraform CI Steps</summary>
 
+   - [Clean](#clean)  
+   - [Clone](#clone)  
+   - [Init](#init)  
+   - [Fmt](#fmt)  
+   - [Validate](#validate)  
+   - [Lint](#lint)  
+   - [Check](#check)  
+   - [Cost Estimation](#cost-estimation)  
+   
+   </details>
+
+6. [Contact Information](#contact-information)  
+7. [References](#references)  
+
+___
 ## Introduction
-Terraform CI is an automated pipeline to validate, lint, and check Terraform code before applying infrastructure changes.
+Terraform Module CI (Continuous Integration) ensures the quality, consistency, and security of infrastructure code. It automates testing and validation, reducing human errors and making infrastructure management more efficient.
 
-## Why Terraform CI?
-Using a CI pipeline for Terraform ensures that code is formatted, validated, and reviewed before deployment, reducing errors and improving team collaboration.
+## Why Terraform Module CI?
+- Automates infrastructure validation and testing.
+- Ensures code consistency and best practices.
+- Reduces risks of misconfiguration.
+- Provides cost estimation before applying changes.
+- Enhances collaboration in infrastructure development.
 
-## Terraform CI Pipeline Steps
+## Terraform CI Steps
+### Clean
+Removes any existing Terraform state or cache files to start with a clean slate.
 
-### <a name="clean-details"></a>Clean
-<details>
-<summary>Details</summary>
-The `clean` step ensures that any previous Terraform state files, logs, or temporary files are removed before running the pipeline.
-</details>
+### Clone
+Fetches the latest version of the Terraform module from the repository.
 
-### <a name="clone-details"></a>Clone
-<details>
-<summary>Details</summary>
-The `clone` step fetches the latest Terraform code from the repository.
-</details>
+### Init
+Initializes the Terraform working directory, downloading necessary provider plugins and modules.
 
-### <a name="init-details"></a>Init
-<details>
-<summary>Details</summary>
-The `init` step initializes Terraform by downloading necessary provider plugins and setting up the backend.
-</details>
+### Fmt
+Formats Terraform code to maintain consistency and readability.
 
-### <a name="fmt-details"></a>Fmt
-<details>
-<summary>Details</summary>
-The `fmt` step checks and formats Terraform code to maintain consistency.
-</details>
+### Validate
+Checks the syntax and structure of Terraform configuration files to catch errors before applying them.
 
-### <a name="validate-details"></a>Validate
-<details>
-<summary>Details</summary>
-The `validate` step ensures that the Terraform configuration is syntactically correct.
-</details>
+### Lint
+Runs static analysis tools to detect potential issues in the Terraform code.
 
-### <a name="lint-details"></a>Lint
-<details>
-<summary>Details</summary>
-The `lint` step runs static analysis tools to catch potential issues in Terraform code.
-</details>
+### Check
+Performs additional verification steps such as compliance and security checks.
 
-### <a name="check-details"></a>Check
-<details>
-<summary>Details</summary>
-The `check` step performs a dry run (`terraform plan`) to detect potential issues before applying changes.
-</details>
+### Cost Estimation
+Calculates the cost impact of proposed infrastructure changes before applying them.
 
-### <a name="cost-estimation-details"></a>Cost Estimation
-<details>
-<summary>Details</summary>
-The `cost estimation` step estimates the cost of infrastructure changes before applying them.
-</details>
+___
+## Contact Information
 
-## Project Structure
-```
-project-root/
-│── terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── backend.tf
-│── ci-pipeline/
-│   ├── clean.sh
-│   ├── clone.sh
-│   ├── init.sh
-│   ├── fmt.sh
-│   ├── validate.sh
-│   ├── lint.sh
-│   ├── check.sh
-│   ├── cost-estimation.sh
-│── README.md
-```
+| **Name** | **Email address** |
+|----------|-------------------------------|
+| Mohit Kumar | [mohit.kumar@mygurukulam.co](mailto:mohit.kumar@mygurukulam.co) |
 
-This README provides an overview of the Terraform CI pipeline and its steps.
+___
+## References
+
+| Link | Description |
+|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| [Redis Documentation - Installation](https://dev.to/iqquee/how-to-setup-redis-on-linux-4h06) | Document format followed from this link. |
+| [Introduction to Redis](https://www.geeksforgeeks.org/introduction-to-redis-server/) | This link gives the Introduction to Redis. |
