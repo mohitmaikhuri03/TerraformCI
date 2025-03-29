@@ -49,10 +49,6 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 ---
 ## CI Workflow
 
-
-
-## Workflow Explanation
-
 ### 🔗 **1. Source Code Management (SCM)**
 
 ![image](https://github.com/user-attachments/assets/32ebb930-98d9-483d-a19b-a3df7c9509da)
