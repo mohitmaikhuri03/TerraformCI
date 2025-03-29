@@ -8,8 +8,9 @@
 1. [Introduction](#introduction)  
 2. [Why Terraform Module CI?](#why-terraform-module-ci)  
 3. [Terraform CI Steps](#terraform-ci-steps)  
-4. [Contact Information](#contact-information)  
-5. [References](#references)  
+4. [CI/CD Workflow](#cicd-workflow)  
+5. [Contact Information](#contact-information)  
+6. [References](#references)  
 
 ___
 ## Introduction
@@ -32,33 +33,28 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 | **Fmt**             | Formats Terraform code to maintain consistency and readability. |
 | **Validate**        | Checks the syntax and structure of Terraform configuration files to catch errors before applying them. |
 | **Lint**            | Runs static analysis tools to detect potential issues in the Terraform code. |
-| **Checkov**           | Performs additional verification steps such as compliance and security checks. |
+| **Checkov**         | Performs additional verification steps such as compliance and security checks. |
 | **Cost Estimation** | Calculates the cost impact of proposed infrastructure changes before applying them. |
 
 ___
+## CI/CD Workflow
 
-graph LR
-    A[SCM (e.g., Git)] --> B(Jenkins Server)
-    B --> C{Pipeline Job}
-    C --> D[Jenkinsfile]
-    D --> E((@Library('your-shared-library-name') _))
-    E --> F[Shared Library]
-    F --> G{src Directory}
-    G --> H{ci Directory}
-    H --> I{terraform Directory}
-    I --> J{common}
-    I --> K{template}
-    I --> L{terraformCI}
-    J --> M[gitclone.groovy]
-    J --> N[wsclean.groovy]
-    K --> O[check.groovy]
-    L --> P[checkov.groovy]
-    L --> Q[cost.groovy]
-    L --> R[fmt.groovy]
-    L --> S[init.groovy]
-    L --> T[lint.groovy]
-    L --> U[validate.groovy]
-
+```mermaid
+flowchart LR
+    A[GitHub Repository] -->|Trigger| B[Jenkins Server]
+    B -->|Executes| C[Jenkins Pipeline]
+    C -->|Loads| D[Jenkinsfile]
+    D -->|Uses| E[Shared Library]
+    E -->|Includes| F[src Directory]
+    F -->|Contains| G[linting.groovy]
+    F -->|Contains| H[fmt.groovy]
+    F -->|Contains| I[validate.groovy]
+    F -->|Contains| J[init.groovy]
+    F -->|Contains| K[checkov.groovy]
+    F -->|Contains| L[action.groovy]
+    E -->|Uses Template| M[terraform_CI.groovy]
+    C -->|Runs| N[Terraform Module Tests]
+```
 
 ## Contact Information
 
