@@ -6,7 +6,7 @@ import ci.terraform.terraformCI.*
 def runpipeline(String terraformDir, String branch, String repoUrl, String credentialsId = null, String INFRACOST_API_KEY)
 {
    
-   // making the instnace of the class in short object to call it as method
+   // making the instnace of the class in short object of a class to call it as method
    Clean = new wsclean()
    Clone = new gitclone()
    Init = new init()
