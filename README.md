@@ -40,20 +40,24 @@ ___
 ## CI/CD Workflow
 
 ```mermaid
+---
+config:
+  layout: fixed
+---
 flowchart LR
-    A[GitHub Repository] -->|Trigger| B[Jenkins Server]
-    B -->|Executes| C[Jenkins Pipeline]
-    C -->|Loads| D[Jenkinsfile]
-    D -->|Uses| E[Shared Library]
-    E -->|Includes| F[src Directory]
-    F -->|Contains| G[linting.groovy]
-    F -->|Contains| H[fmt.groovy]
-    F -->|Contains| I[validate.groovy]
-    F -->|Contains| J[init.groovy]
-    F -->|Contains| K[checkov.groovy]
-    F -->|Contains| L[action.groovy]
-    E -->|Uses Template| M[terraform_CI.groovy]
-    C -->|Runs| N[Terraform Module Tests]
+    A["SCM - e.g., Git"] --> B["Jenkins Server"]
+    B --> C{"Pipeline Job"}
+    C --> D["Jenkinsfile"]
+    D --> E["Library: your-shared-library-name"]
+    E --> F["Shared Library"]
+    F --> G{"src Directory"}
+    G --> H{"ci Directory"}
+    H --> I{"terraform Directory"}
+    I --> J{"common"} & K{"template"} & L{"terraformCI"}
+    J --> M["gitclone.groovy"] & N["wsclean.groovy"]
+    K --> O["check.groovy"]
+    L --> P["checkov.groovy"] & Q["cost.groovy"] & R["fmt.groovy"] & S["init.groovy"] & T["lint.groovy"] & U["validate.groovy"]
+
 ```
 
 ## Contact Information
