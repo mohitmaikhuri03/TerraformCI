@@ -7,23 +7,9 @@
 ## Table of Contents
 1. [Introduction](#introduction)  
 2. [Why Terraform Module CI?](#why-terraform-module-ci)  
-
-   <details>
-   <summary>Terraform CI Steps</summary>
-
-   - [Clean](#clean)  
-   - [Clone](#clone)  
-   - [Init](#init)  
-   - [Fmt](#fmt)  
-   - [Validate](#validate)  
-   - [Lint](#lint)  
-   - [Check](#check)  
-   - [Cost Estimation](#cost-estimation)  
-   
-   </details>
-
-6. [Contact Information](#contact-information)  
-7. [References](#references)  
+3. [Terraform CI Steps](#terraform-ci-steps)  
+4. [Contact Information](#contact-information)  
+5. [References](#references)  
 
 ___
 ## Introduction
@@ -37,29 +23,17 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 - Enhances collaboration in infrastructure development.
 
 ## Terraform CI Steps
-### [Clean](#clean)
-Removes any existing Terraform state or cache files to start with a clean slate.
 
-### [Clone](#clone)
-Fetches the latest version of the Terraform module from the repository.
-
-### [Init](#init)
-Initializes the Terraform working directory, downloading necessary provider plugins and modules.
-
-### [Fmt](#fmt)
-Formats Terraform code to maintain consistency and readability.
-
-### [Validate](#validate)
-Checks the syntax and structure of Terraform configuration files to catch errors before applying them.
-
-### [Lint](#lint)
-Runs static analysis tools to detect potential issues in the Terraform code.
-
-### [Check](#check)
-Performs additional verification steps such as compliance and security checks.
-
-### [Cost Estimation](#cost-estimation)
-Calculates the cost impact of proposed infrastructure changes before applying them.
+| **Step**              | **Description** |
+|----------------------|------------------------------------------------------------------|
+| **Clean**           | Removes any existing Terraform state or cache files to start with a clean slate. |
+| **Clone**           | Fetches the latest version of the Terraform module from the repository. |
+| **Init**            | Initializes the Terraform working directory, downloading necessary provider plugins and modules. |
+| **Fmt**             | Formats Terraform code to maintain consistency and readability. |
+| **Validate**        | Checks the syntax and structure of Terraform configuration files to catch errors before applying them. |
+| **Lint**            | Runs static analysis tools to detect potential issues in the Terraform code. |
+| **Checkov**           | Performs additional verification steps such as compliance and security checks. |
+| **Cost Estimation** | Calculates the cost impact of proposed infrastructure changes before applying them. |
 
 ___
 ## Contact Information
