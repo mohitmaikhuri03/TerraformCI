@@ -17,13 +17,14 @@ pipeline {
         credentialsId = 'Personal'
         branch = 'main'
         terraformDir = '.'
+        INFRACOST_API_KEY = credentials('INFRACOST_API_KEY')
     }
 
     stages {
         stage('Terraform CI CHECKS') {
             steps {
                 script {
-                    CICheck.runpipeline(env.terraformDir, env.branch, env.repoUrl, env.credentialsId)
+                    CICheck.runpipeline(env.terraformDir, env.branch, env.repoUrl, env.credentialsId, env.INFRACOST_API_KEY)
                 }
             }
         }
