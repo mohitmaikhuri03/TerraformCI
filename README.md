@@ -37,28 +37,28 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 - Enhances collaboration in infrastructure development.
 
 ## Terraform CI Steps
-### Clean
+### [Clean](#clean)
 Removes any existing Terraform state or cache files to start with a clean slate.
 
-### Clone
+### [Clone](#clone)
 Fetches the latest version of the Terraform module from the repository.
 
-### Init
+### [Init](#init)
 Initializes the Terraform working directory, downloading necessary provider plugins and modules.
 
-### Fmt
+### [Fmt](#fmt)
 Formats Terraform code to maintain consistency and readability.
 
-### Validate
+### [Validate](#validate)
 Checks the syntax and structure of Terraform configuration files to catch errors before applying them.
 
-### Lint
+### [Lint](#lint)
 Runs static analysis tools to detect potential issues in the Terraform code.
 
-### Check
+### [Check](#check)
 Performs additional verification steps such as compliance and security checks.
 
-### Cost Estimation
+### [Cost Estimation](#cost-estimation)
 Calculates the cost impact of proposed infrastructure changes before applying them.
 
 ___
