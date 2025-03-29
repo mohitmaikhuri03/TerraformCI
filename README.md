@@ -2,7 +2,6 @@
 
 ![image](https://github.com/user-attachments/assets/542dd328-47e7-484f-9283-33bce981af1e)
 
-
 | **Author** | **Created on** | **Version** | **Last updated by** | **Last Edited On** | **Level** | **Reviewer** |
 |------------|--------------|-------------|----------------|---------------|-------------|-------------|
 | Mohit Kumar | 30-03-2025 | Version 1 | Mohit Kumar | 30-03-2025 | Internal Reviewer | |
@@ -48,30 +47,29 @@ Terraform Module CI (Continuous Integration) ensures the quality, consistency, a
 | **💰 Cost Estimation** | Calculates the cost impact of proposed infrastructure changes before applying them. |
 
 ---
-## CI/CD Workflow
+## CI  Workflow
 
 ```mermaid
-digraph {
-    A[🔗 SCM - e.g., Git] -> B[🛠 Jenkins Server]
-    B -> C{🚀 Pipeline Job}
-    C -> D[📜 Jenkinsfile]
-    D -> E[📦 Shared Library]
-    E -> F{📁 src Directory}
-    F -> G{📁 ci Directory}
-    G -> H{📁 terraform Directory}
-    H -> J{📁 common}
-    H -> K{📁 template}
-    H -> L{📁 terraformCI}
-    J -> M[📜 gitclone.groovy]
-    J -> N[📜 wsclean.groovy]
-    K -> O[📜 template.groovy]
-    L -> P[🔒 checkov.groovy]
-    L -> Q[💰 cost.groovy]
-    L -> R[📝 fmt.groovy]
-    L -> S[⚙️ init.groovy]
-    L -> T[🔍 lint.groovy]
-    L -> U[✅ validate.groovy]
-}
+graph TD;
+    A[🔗 SCM - e.g., Git] --> B[🛠 Jenkins Server];
+    B --> C{🚀 Pipeline Job};
+    C --> D[📜 Jenkinsfile];
+    D --> E[📦 Shared Library];
+    E --> F{📁 src Directory};
+    F --> G{📁 ci Directory};
+    G --> H{📁 terraform Directory};
+    H --> J{📁 common};
+    H --> K{📁 template};
+    H --> L{📁 terraformCI};
+    J --> M[📜 gitclone.groovy];
+    J --> N[📜 wsclean.groovy];
+    K --> O[📜 template.groovy];
+    L --> P[🔒 checkov.groovy];
+    L --> Q[💰 cost.groovy];
+    L --> R[📝 fmt.groovy];
+    L --> S[⚙️ init.groovy];
+    L --> T[🔍 lint.groovy];
+    L --> U[✅ validate.groovy];
 ```
 
 ## Workflow Explanation
