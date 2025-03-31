@@ -7,9 +7,9 @@ def runpipeline(String terraformDir, String branch, String repoUrl, String crede
 {
    
    // making the instnace of the class in short object of a class to call it as method
-   Clean = new wsclean()
-   Clone = new gitclone()
-   Init = new init()
+  def Clean = new wsclean()
+   def Clone = new gitclone()
+   def Init = new init()
    Fmt = new fmt()
    Validate = new validate()
    Lint = new lint()
