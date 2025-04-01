@@ -124,13 +124,11 @@ pipeline {
         string(name: 'terraformDir', defaultValue: '.', description: 'Enter the Terraform directory')
         choice(name: 'AWS_DEFAULT_REGION', choices: ['us-east-1', 'us-west-1', 'us-west-2'], description: 'Choose AWS Region')
         string(name: 'INFRACOST_API_KEY', defaultValue: 'INFRACOST_API_KEY', description: 'Enter Infracost API Key')
-        string(name: 'AWS_ACCESS_KEY_ID', defaultValue: 'AWS_ACCESS_KEY_ID', description: 'Enter AWS Access Key ID')
-        string(name: 'AWS_SECRET_ACCESS_KEY', defaultValue: 'AWS_SECRET_ACCESS_KEY', description: 'Enter AWS Secret Access Key')
     }
 
     environment {
-        AWS_ACCESS_KEY_ID     = "${params.AWS_ACCESS_KEY_ID}"
-        AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         AWS_DEFAULT_REGION    = "${params.AWS_DEFAULT_REGION}"
         repoUrl = "${params.repoUrl}"
         credentialsId = 'Personal'
