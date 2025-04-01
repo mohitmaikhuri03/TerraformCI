@@ -106,3 +106,126 @@ pipeline {
         }
     }
 }
+
+
+
+____________________________________________-
+
+pipeline {
+    agent any
+
+    tools {
+        terraform 'terraform'
+    }
+
+    parameters {
+        string(name: 'repoUrl', defaultValue: 'https://github.com/mohitmaikhuri03/VAULT-TOOL.git', description: 'Enter the Git repository URL')
+        string(name: 'branch', defaultValue: 'main', description: 'Enter the branch name')
+        string(name: 'terraformDir', defaultValue: '.', description: 'Enter the Terraform directory')
+        choice(name: 'AWS_DEFAULT_REGION', choices: ['us-east-1', 'us-west-1', 'us-west-2'], description: 'Choose AWS Region')
+        string(name: 'INFRACOST_API_KEY', defaultValue: 'INFRACOST_API_KEY', description: 'Enter Infracost API Key')
+        string(name: 'AWS_ACCESS_KEY_ID', defaultValue: 'AWS_ACCESS_KEY_ID', description: 'Enter AWS Access Key ID')
+        string(name: 'AWS_SECRET_ACCESS_KEY', defaultValue: 'AWS_SECRET_ACCESS_KEY', description: 'Enter AWS Secret Access Key')
+    }
+
+    environment {
+        AWS_ACCESS_KEY_ID     = "${params.AWS_ACCESS_KEY_ID}"
+        AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
+        AWS_DEFAULT_REGION    = "${params.AWS_DEFAULT_REGION}"
+        repoUrl = "${params.repoUrl}"
+        credentialsId = 'Personal'
+        branch = "${params.branch}"
+        terraformDir = "${params.terraformDir}"
+        INFRACOST_API_KEY = "${params.INFRACOST_API_KEY}"
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Clone Repository') {
+            steps {
+                script {
+                    if (credentialsId) {
+                        git branch: branch, url: repoUrl, credentialsId: credentialsId
+                    } else {
+                        git branch: branch, url: repoUrl
+                    }
+                }
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir(terraformDir) {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Format Check') {
+            steps {
+                dir(terraformDir) {
+                    sh 'terraform fmt'
+                }
+            }
+        }
+
+        stage('Terraform Validate') {
+            steps {
+                dir(terraformDir) {
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Terraform Linting') {
+            steps {
+                dir(terraformDir) {
+                    sh ''' 
+                        if ! command -v tflint &> /dev/null; then
+                            curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+                        fi
+                        tflint --format json > tflint_report.json || true
+                    '''
+                    archiveArtifacts artifacts: 'tflint_report.json', fingerprint: true
+                }
+            }
+        }
+
+        stage('Checkov Security Scan') {
+            steps {
+                dir(terraformDir) {
+                    sh '''
+                        if ! command -v checkov &> /dev/null; then
+                            pip install --user -q --upgrade checkov
+                        fi
+                        export PATH=$HOME/.local/bin:$PATH
+                        checkov -d . --output json > checkov_report.json || true
+                    '''
+                    archiveArtifacts artifacts: 'checkov_report.json', fingerprint: true
+                }
+            }
+        }
+
+        stage('Terraform Cost Estimation') {
+            steps {
+                dir(terraformDir) {
+                    withEnv(["INFRACOST_API_KEY=${INFRACOST_API_KEY}"]) {  
+                        sh '''
+                            if ! command -v infracost >/dev/null 2>&1; then
+                                curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+                            fi
+                            
+                            infracost breakdown --path . --format html > infracost_report.html || true
+                        '''
+                    }
+                    archiveArtifacts artifacts: 'infracost_report.html', fingerprint: true
+                }
+            }
+        }
+    }
+}
