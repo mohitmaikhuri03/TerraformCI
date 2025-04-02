@@ -9,7 +9,7 @@
 ## Table of Contents
 1. [Introduction](#introduction)  
 2. [Prerequisites](#prerequisites)  
-3. [Why Terraform Module CI/CD?](#why-terraform-module-ci)  
+3. [Why Terraform Module CI?](#why-terraform-module-ci)  
 4. [Terraform CI Steps](#terraform-ci-steps)   
 5. [Comparison of Terraform Code Quality Checks](#comparison-of-terraform-code-quality-checks)
 6. [CI Workflow](#ci-workflow) 
@@ -29,7 +29,7 @@ Terraform Module CI/CD (Continuous Integration) ensures the quality, consistency
 | Terraform | Terraform must be installed on the system. |
 | Jenkins | Jenkins should be set up and configured for pipeline execution. |
 
-## Why Terraform Module CI/CD?
+## Why Terraform Module CI?
 ✅ Automates infrastructure validation and testing.  
 ✅ Ensures code consistency and best practices.  
 ✅ Reduces risks of misconfiguration.  
@@ -57,22 +57,10 @@ Terraform Module CI/CD (Continuous Integration) ensures the quality, consistency
 
 | **Step**     | **Purpose** | **Example Issue** | **Example Code** | **Fixed Code** |
 |-------------|------------|------------------|------------------|---------------|
-| **Fmt**      | Ensures consistent formatting by adjusting indentation, spacing, and structure. | Improperly formatted code. | 
-resource "aws_instance"{ami="ami-123"}
- | 
-resource "aws_instance" { ami = "ami-123" }
- |
-| **Validate** | Checks for syntax errors and verifies dependencies between Terraform resources. | Missing required fields in a resource. | 
-resource "aws_s3_bucket" "example" {}
- | 
-resource "aws_s3_bucket" "example" { bucket = "my-bucket" acl = "private" }
- |
-| **Lint**     | Detects best practice violations, such as hardcoded credentials, deprecated syntax, or insecure configurations. | Hardcoded access keys in Terraform variables. | 
-variable "aws_access_key" {default = "ABC123"}
- | Error: Hardcoded credentials should not be used. |
-| **Checkov**  | Runs security and compliance checks to identify misconfigurations. | Open security group allowing unrestricted access. | 
-resource "aws_security_group" "example" { ingress {cidr_blocks = ["0.0.0.0/0"]}}
- | Checkov fails: Security groups should not allow unrestricted access. |
+| **Fmt**      | Ensures consistent formatting by adjusting indentation, spacing, and structure. | Improperly formatted code. | ```hcl resource "aws_instance"{ami="ami-123"} ``` | ```hcl resource "aws_instance" { ami = "ami-123" } ``` |
+| **Validate** | Checks for syntax errors and verifies dependencies between Terraform resources. | Missing required fields in a resource. | ```hcl resource "aws_s3_bucket" "example" {} ``` | ```hcl resource "aws_s3_bucket" "example" { bucket = "my-bucket" acl = "private" } ``` |
+| **Lint**     | Detects best practice violations, such as hardcoded credentials, deprecated syntax, or insecure configurations. | Hardcoded access keys in Terraform variables. | ```hcl variable "aws_access_key" {default = "ABC123"} ``` | **Error:** Hardcoded credentials should not be used. |
+| **Checkov**  | Runs security and compliance checks to identify misconfigurations. | Open security group allowing unrestricted access. | ```hcl resource "aws_security_group" "example" { ingress {cidr_blocks = ["0.0.0.0/0"]} } ``` | **Checkov fails:** Security groups should not allow unrestricted access. |
 
 ___
 
@@ -141,11 +129,11 @@ No, terraform validate checks for syntax and logical errors, while Checkov is us
 ### Why should I run terraform fmt?
 Running terraform fmt ensures consistent formatting, making it easier to read and maintain the code.
 
-### What happens if Checkov fails in CI/CD?
+### What happens if Checkov fails in CI?
 If Checkov fails, it indicates potential security issues. You should fix the reported vulnerabilities before proceeding with deployment.
 
 ### How does infracost help in Terraform CI?
-infracost helps estimate cloud resource costs before deployment, aiding in budget planning and cost optimization.
+Infracost helps estimate cloud resource costs before deployment, aiding in budget planning and cost optimization.
 
 ## Conclusion
 Terraform Module CI/CD workflow ensures infrastructure code is tested, validated, and optimized before deployment. It enforces best practices, improves security, and enhances collaboration through automation. By integrating tools like TFLint for code linting, Checkov for security checks, and Infracost for cost estimation, this approach minimizes risks and streamlines infrastructure management. The modular design of the pipeline makes it scalable, maintainable, and adaptable for future improvements.
