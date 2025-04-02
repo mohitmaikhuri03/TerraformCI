@@ -148,7 +148,7 @@ If Checkov fails, it indicates potential security issues. You should fix the rep
 infracost helps estimate cloud resource costs before deployment, aiding in budget planning and cost optimization.
 
 ## Conclusion
-Terraform Module CI/CD workflow brings consistency, security, and efficiency to infrastructure code. By automating testing, validation, and compliance checks, it reduces human errors and enhances collaboration. The modular and reusable shared library structure makes CI pipelines easy to maintain and scale. With tools like TFLint, Checkov, and Infracost, teams can enforce best practices, identify security risks, and optimize costs before applying changes. This approach ensures a reliable and streamlined infrastructure management process.
+Terraform Module CI/CD workflow ensures infrastructure code is tested, validated, and optimized before deployment. It enforces best practices, improves security, and enhances collaboration through automation. By integrating tools like TFLint for code linting, Checkov for security checks, and Infracost for cost estimation, this approach minimizes risks and streamlines infrastructure management. The modular design of the pipeline makes it scalable, maintainable, and adaptable for future improvements.
 
 ___
 ## Contact Information
