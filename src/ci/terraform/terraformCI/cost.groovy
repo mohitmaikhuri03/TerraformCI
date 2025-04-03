@@ -8,9 +8,14 @@ def terraformCostEstimate(String terraformDir, String INFRACOST_API_KEY) {
                     curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
                 fi
                 
-                infracost breakdown --path . --format html > infracost_report.html || true
+                # Generate JSON cost estimate first
+                infracost breakdown --path . --format json --out-file infracost.json || true
+                
+                # Convert JSON to HTML report
+                infracost output --format html --path infracost.json --out-file infracost_report.html || true
             """
         }
         archiveArtifacts artifacts: 'infracost_report.html', fingerprint: true
     }
 }
+
