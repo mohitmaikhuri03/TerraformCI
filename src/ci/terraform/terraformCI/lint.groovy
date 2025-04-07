@@ -1,6 +1,7 @@
 package ci.terraform.terraformCI
 
 def tflintScan(String terraformDir) {
+    stage('Lint') {
     dir(terraformDir) {
         sh """ 
             if ! command -v tflint &> /dev/null; then
@@ -10,4 +11,5 @@ def tflintScan(String terraformDir) {
         """
         archiveArtifacts artifacts: 'tflint_report.json', fingerprint: true
     }
+}
 }
