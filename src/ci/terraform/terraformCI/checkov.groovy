@@ -16,6 +16,7 @@
 package ci.terraform.terraformCI
 
 def terraformcheckov(String terraformDir) {
+    stage('Checkov') {
     dir(terraformDir) {
         sh '''
             if ! command -v checkov &> /dev/null; then
@@ -30,4 +31,5 @@ def terraformcheckov(String terraformDir) {
         '''
         archiveArtifacts artifacts: 'checkov_report.txt', fingerprint: true
     }
+}
 }
