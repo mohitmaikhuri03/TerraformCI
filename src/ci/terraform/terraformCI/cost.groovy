@@ -1,6 +1,7 @@
 package ci.terraform.terraformCI
 
 def terraformCostEstimate(String terraformDir, String INFRACOST_API_KEY) {
+    stage('Cost') {
     dir(terraformDir) {
         withEnv(["INFRACOST_API_KEY=${INFRACOST_API_KEY}"]) {  
             sh """
@@ -18,4 +19,4 @@ def terraformCostEstimate(String terraformDir, String INFRACOST_API_KEY) {
         archiveArtifacts artifacts: 'infracost_report.html', fingerprint: true
     }
 }
-
+}
